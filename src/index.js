@@ -1,7 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
-
+import StreamCreate from "./components/streams/StreamCreate";
+import StreamDelete from "./components/streams/StreamDelete";
+import StreamEdit from "./components/streams/StreamEdit";
+import StreamList from "./components/streams/StreamList";
+import StreamShow from "./components/streams/StreamShow";
+import Header from "./components/Header";
 import "./styles.css";
 
 const PageOne = () => {
@@ -24,11 +29,15 @@ const PageTwo = () => {
 
 function App() {
   return (
-    <div className="App">
-      <Router basename={"/v1"}>
+    <div>
+      <Router>
         <div>
-          <Route path="/pageone" exact component={PageOne} />
-          <Route path="/pagetwo" component={PageTwo} />
+          <Header />
+          <Route path="/streams/new" component={StreamCreate} />
+          <Route path="/streams/delete" component={StreamDelete} />
+          <Route path="/streams/edit" component={StreamEdit} />
+          <Route path="/" exact component={StreamList} />
+          <Route path="/streams/show" component={StreamShow} />
         </div>
       </Router>
     </div>
