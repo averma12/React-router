@@ -1,32 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+import { Provider } from "react-redux";
+import { createStore} from "redux";
 import StreamCreate from "./components/streams/StreamCreate";
 import StreamDelete from "./components/streams/StreamDelete";
 import StreamEdit from "./components/streams/StreamEdit";
 import StreamList from "./components/streams/StreamList";
 import StreamShow from "./components/streams/StreamShow";
 import Header from "./components/Header";
+import reducers from "./reducers";
 
 import "./styles.css";
 
-const PageOne = () => {
-  return (
-    <div>
-      Page One
-      <NavLink to="/pagetwo">Navigate to Page two</NavLink>
-    </div>
-  );
-};
-
-const PageTwo = () => {
-  return (
-    <div>
-      Page Two
-      <NavLink to="/pageone">Navigate to Page one</NavLink>
-    </div>
-  );
-};
+const store = createStore(reducers);
 
 function App() {
   return (
@@ -46,4 +33,4 @@ function App() {
 }
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+ReactDOM.render(<Provider store={store}><App /></Provider>, rootElement);
